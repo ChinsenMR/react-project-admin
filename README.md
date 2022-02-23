@@ -1,8 +1,5 @@
 # react-project-admin
-1 git clone update https://github.com/ChinsenMR/react-project-admin.git to git://github.com/ChinsenMR/react-project-admin.git
-
-
-
+本项目采用react + typescript + antd实现后台
 ### `yarn start`
 
 ### `yarn test`

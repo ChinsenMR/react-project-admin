@@ -4,11 +4,8 @@ import {Button} from 'antd'
 import "antd/dist/antd.css";
 function App() {
   return (
-    <div className="App">
-      <Button type="primary">test</Button>
-      <div className="App">
-        <BaseLayout />
-      </div>
+    <div className="App" >
+     <BaseLayout />
     </div>
   );
 }
