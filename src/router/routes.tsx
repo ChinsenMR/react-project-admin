@@ -11,7 +11,10 @@ interface MenuItem {
   title: string;
   icon: string;
   component: JSX.Element;
-  subs: SubsItem[];
+  subs?: SubsItem[];
+  selected?: boolean;
+  opened?: boolean;
+  hidden?: boolean;
 }
 
 const routes: MenuItem[] = [
@@ -21,6 +24,8 @@ const routes: MenuItem[] = [
     icon: "bank",
     component: <Home />,
     subs: [],
+    selected: true,
+    hidden: true,
   },
   {
     key: "/404",
@@ -28,49 +33,58 @@ const routes: MenuItem[] = [
     icon: "bank",
     component: <ErrorPage />,
     subs: [],
+    hidden: true,
   },
   {
-    key: "/index",
+    key: "/main",
     title: "首页",
     icon: "bank",
     component: <Home />,
     subs: [],
+    selected: true,
   },
-  {
-    key: "/mine",
-    title: "首页",
-    icon: "bank",
-    component: <Mine />,
-    subs: [],
-  },
+ 
   {
     key: "/article",
     title: "文章",
     icon: "bank",
-    component: <Article />,
-    subs: [],
+    component: <Home />,
+    opened: true,
+    subs: [
+      {
+        key: "/main/article/edit",
+        title: "发布",
+        component: <Home />,
+      },
+      {
+        key: "/main/article/list",
+        title: "文章列表",
+        component: <Home />,
+      },
+    ],
   },
-  // { key: "/main/table", title: "表格", icon: "book", component: "BaseTable" },
-  // { key: "/main/message", title: "消息", icon: "bulb", component: "Messsage" },
-  // { key: "/main/auth", title: "权限", icon: "bug", component: "Auth" },
-  // { key: "/main/staff", title: "员工", icon: "audio", component: "Staff" },
-  // {
-  //   key: "/main/setting",
-  //   title: "设置",
-  //   icon: "rocket",
-  //   component: 'none',
-  //   subs: [
-  //     {
-  //       key: "/main/setting/usercenter",
-  //       title: "个人中心",
-  //       component: "Usercenter",
-  //     },
-  //     // {
-  //     //   key: "/main/setting/expand",
-  //     //   title: "功能扩展",
-  //     //   component: "Expand",
-  //     // },
-  //   ],
-  // },
+  { key: "/main/table", title: "表格", icon: "book", component: <Article /> },
+  { key: "/main/message", title: "消息", icon: "bulb", component: <Article /> },
+  { key: "/main/auth", title: "权限", icon: "bug", component: <Article /> },
+  { key: "/main/staff", title: "员工", icon: "audio", component: <Article /> },
+  {
+    key: "/main/setting",
+    title: "设置",
+    icon: "rocket",
+    component: <Article />,
+    subs: [
+      {
+        key: "/main/setting/usercenter",
+        title: "个人中心",
+        component: <Article />,
+      },
+      {
+        key: "/main/setting/expand",
+        title: "功能扩展",
+        component: <Article />,
+      },
+      
+    ],
+  },
 ];
 export default routes;

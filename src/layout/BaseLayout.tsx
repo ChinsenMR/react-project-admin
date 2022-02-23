@@ -1,23 +1,42 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb, Button, Icon } from "antd";
 import Routes from "../router";
-const { Header } = Layout;
-// console.log(Layout,'sss')
+import Navside from "./Navside";
+import "./style.css";
+const { Content } = Layout;
+
+const { SubMenu } = Menu;
 
 class BaseLayout extends React.Component<object, object> {
+  state = {
+    collapsed: false,
+  };
+  toggleCollapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  };
   render() {
     return (
-      <div>
-        <Layout>
-          <Layout.Header className="main-header">
-            <Header />
-          </Layout.Header>
-          <Layout className="main-content">
-            {/* <Navside /> */}
-            <Layout.Content>
+      <div style={{ width: `100%`, height: `100%` }}>
+        <Layout className="main-content">
+          <Navside />
+
+          <Content style={{ padding: 15 }} className="layout-content">
+            <Breadcrumb>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <a href="">Application Center</a>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <a href="">Application List</a>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>An Application</Breadcrumb.Item>
+            </Breadcrumb>
+            <div style={{padding: '15px 0'}}>
               <Routes />
-            </Layout.Content>
-          </Layout>
+            </div>
+          </Content>
         </Layout>
       </div>
     );
