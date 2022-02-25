@@ -3,7 +3,8 @@ interface Params {
 }
 class CreateHeader {
     constructor(params: Params) {
-
+        
     }
 }
+
 export default CreateHeader

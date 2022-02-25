@@ -5,8 +5,6 @@ import Navside from "./Navside";
 import "./style.css";
 const { Content } = Layout;
 
-const { SubMenu } = Menu;
-
 class BaseLayout extends React.Component<object, object> {
   state = {
     collapsed: false,
@@ -21,7 +19,6 @@ class BaseLayout extends React.Component<object, object> {
       <div style={{ width: `100%`, height: `100%` }}>
         <Layout className="main-content">
           <Navside />
-
           <Content style={{ padding: 15 }} className="layout-content">
             <Breadcrumb>
               <Breadcrumb.Item>Home</Breadcrumb.Item>

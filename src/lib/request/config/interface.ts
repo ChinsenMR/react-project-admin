@@ -1,12 +1,13 @@
 export interface RequestParams {
     url: string // request url
-    data: [object, string], // request data
-    cache?: string,
+    data: [object, string,], // request data
+    cache?: string, 
     headers?: object,
     method: string,
     credentials?: string,
     mode?: string
 }
+
 export interface FetchParams {
     body: [object, string],
     cache?: string,
@@ -17,7 +18,8 @@ export interface FetchParams {
     redirect: string, // manual, *follow, error
     referrer: string // *client, no-referrer
 }
-export interface Response{
+
+export interface Response {
     data: any,
     code: number
 }

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Button, Icon } from "antd";
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { switchMenu } from "../redux2/actions";
 import {
   AppstoreOutlined,
   MenuUnfoldOutlined,
@@ -20,15 +22,15 @@ type BaseMenu = {
   key: any;
   icon: any;
   title: any;
-  hidden?: boolean
+  hidden?: boolean;
 };
 interface MenuSubItem extends BaseMenu {
   subs: [];
 }
 
 // 渲染有子菜单的subMenu
-export default function Navside() {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+function Navside() {
+  const [collapsed, setCollapsed] = useState<boolean>(true);
   const defaultKeys = routes.filter((v) => v.selected).map((v) => v.key);
   const defaultOpenKeys = routes.filter((v) => v.opened).map((v) => v.key);
 
@@ -77,3 +79,16 @@ export default function Navside() {
     </Sider>
   );
 }
+
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    handleClick(titleArray: string) {
+      dispatch(switchMenu(titleArray));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Navside);
