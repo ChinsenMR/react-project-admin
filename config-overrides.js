@@ -2,11 +2,14 @@ const {
     override,
     fixBabelImports,
     addLessLoader,
+    addWebpackAlias,
     extendDefaultPlugins
 } = require("customize-cra");
-const theme = require("./package.json").theme;
+const theme = require("./package.json").theme; // 用于配置antd主题颜色
 
-const SVGO = require('svgo')
+const path = require('path');
+
+const SVGO = require('svgo');
 
 const configSelector = () => (config, env) => {
     const oneOf_loc = config.module.rules.findIndex(n => n.oneOf)
@@ -43,9 +46,17 @@ module.exports = override(
         }
 
     }),
+    //按需加载antd
     fixBabelImports("import", {
         libraryName: "antd",
         libraryDirectory: "es",
-        style: 'css' // change importing css to less
+        style: 'css' // true是less，如果不用less style的值可以写'css' 
+    }),
+     //别名配置
+    addWebpackAlias({
+        ['@']: path.resolve(__dirname, './src'),
+        ['@components']: path.resolve(__dirname, './src/components'),
+        ['@lib']: path.resolve(__dirname, './src/lib'),
+        ['@pages']: path.resolve(__dirname, './src/pages')
     })
 );

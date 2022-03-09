@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Button, Icon } from "antd";
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { switchMenu } from "../redux2/actions";
+
 import {
   AppstoreOutlined,
   MenuUnfoldOutlined,
@@ -12,7 +11,7 @@ import {
   ContainerOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import routes from "../router/routes";
+import routes from "@/router/routes";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -80,15 +79,4 @@ function Navside() {
   );
 }
 
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    handleClick(titleArray: string) {
-      dispatch(switchMenu(titleArray));
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Navside);
+export default Navside;

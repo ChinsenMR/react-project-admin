@@ -30,7 +30,7 @@ class BaseLayout extends React.Component<object, object> {
               </Breadcrumb.Item>
               <Breadcrumb.Item>An Application</Breadcrumb.Item>
             </Breadcrumb>
-            <div style={{padding: '15px 0'}}>
+            <div style={{ padding: "15px 0" }}>
               <Routes />
             </div>
           </Content>
