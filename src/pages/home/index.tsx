@@ -1,19 +1,32 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Skeleton } from 'antd';
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "@/redux/slice";
+import { IListItem, pageState } from "@/interface/types";
 function Home() {
-  const data = useSelector((state: any) => {
-    console.log(state);
-    return state.todos.list;
-  });
   const dispatch = useDispatch();
-  return (<Skeleton avatar paragraph={{ rows: 4 }} />
-    // <>
-    //   <div>Home{JSON.stringify(data)}</div>
-    //   <button onClick={() => dispatch({ type: "ADD_TODO", text: ["aaa"] })}>
-    //     +
-    //   </button>
-    //   <button onClick={() => dispatch({ type: "decrement" })}>-</button>
-    // </>
+  const { dataList, flag } = useSelector((state: pageState) => state);
+
+  const getData = () => {
+    // dispatch(testApi());
+  };
+  const itemClickhandle = (item: IListItem, index: number) => {
+    dispatch(actions.updateItem(index));
+    dispatch(actions.updateFlag());
+  };
+
+  getData();
+
+  return (
+    <div className="test-page-container">
+      {dataList.map((item, index) => (
+        <p
+          className="list-item"
+          key={item.age}
+          onClick={() => itemClickhandle(item, index)}
+        >
+          {`name is ${item.name}---age is ${item.age} &&& flag is ${flag}`}
+        </p>
+      ))}
+    </div>
   );
 }
 export default Home;

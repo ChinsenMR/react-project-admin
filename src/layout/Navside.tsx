@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Button, Icon } from "antd";
 import React, { useState } from "react";
+
 import {
   AppstoreOutlined,
   MenuUnfoldOutlined,
@@ -10,7 +11,7 @@ import {
   ContainerOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import routes from "../router/routes";
+import routes from "@/router/routes";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -20,15 +21,15 @@ type BaseMenu = {
   key: any;
   icon: any;
   title: any;
-  hidden?: boolean
+  hidden?: boolean;
 };
 interface MenuSubItem extends BaseMenu {
   subs: [];
 }
 
 // 渲染有子菜单的subMenu
-export default function Navside() {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+function Navside() {
+  const [collapsed, setCollapsed] = useState<boolean>(true);
   const defaultKeys = routes.filter((v) => v.selected).map((v) => v.key);
   const defaultOpenKeys = routes.filter((v) => v.opened).map((v) => v.key);
 
@@ -77,3 +78,5 @@ export default function Navside() {
     </Sider>
   );
 }
+
+export default Navside;
